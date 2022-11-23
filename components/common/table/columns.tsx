@@ -1,22 +1,22 @@
+import { ColumnFilter } from "./ColumnFilter";
+
 export const COLUMNS = [
   {
     Header: "Id",
     accessor: "id",
   },
   {
-    Header: "Firma Adı",
+    Header: "Company Name",
     accessor: "companyName",
+    Filter: ColumnFilter,
   },
   {
-    Header: "Vergi Kimlik No",
+    Header: "Tax Number",
     accessor: "taxNumber",
+    Filter: ColumnFilter,
   },
   {
-    Header: "Vergi Dairesi",
+    Header: "Tax Office",
     accessor: "taxOffice",
-  },
-  {
-    Header: "Şehir",
-    accessor: "city",
   },
 ];

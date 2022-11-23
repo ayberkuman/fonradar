@@ -1,17 +1,28 @@
 import Link from "next/link";
 import React, { useMemo } from "react";
-import { useTable } from "react-table";
+import { useTable, useSortBy, useFilters } from "react-table";
+import { ColumnFilter } from "./ColumnFilter";
 import { COLUMNS } from "./columns";
 
 export const BasicTable = ({ data }) => {
   const columns = useMemo(() => COLUMNS, []);
-
+  const defaultColumn = useMemo(
+    () => ({
+      Filter: ColumnFilter,
+    }),
+    []
+  );
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
-      columns,
-      data,
-    });
+    useTable(
+      {
+        columns,
+        data,
+        defaultColumn,
+      },
 
+      useFilters,
+      useSortBy
+    );
   return (
     <div className="table-container">
       <table {...getTableProps()}>
@@ -19,7 +30,13 @@ export const BasicTable = ({ data }) => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render("Header")}
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
+                  <span>
+                    {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
+                  </span>
+                </th>
               ))}
             </tr>
           ))}
@@ -32,7 +49,9 @@ export const BasicTable = ({ data }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <Link href={`/customers/${cell.row.values.id}`}>
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    </Link>
                   );
                 })}
               </tr>
