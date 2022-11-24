@@ -1,17 +1,29 @@
 import { EditCustomer } from "@components/EditCustomer/EditCustomer";
 import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Detail = ({ data }) => {
   const [isOnEdit, setIsOnEdit] = useState(false);
+
   const router = useRouter();
+
   const { mutate } = useDeleteCustomer();
+
   const handleDelete = (e) => {
     e.preventDefault();
     mutate(data.id);
     router.push("/customers");
   };
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  useEffect(() => {
+    refreshData();
+  }, [isOnEdit]);
+
   return !isOnEdit ? (
     <ul>
       <li>{data.id}</li>
