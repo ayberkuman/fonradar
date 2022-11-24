@@ -49,7 +49,7 @@ export const BasicTable = ({ data }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <Link href={`/customers/${cell.row.values.id}`}>
+                    <Link href={`/customers/${cell.row.values}`}>
                       <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     </Link>
                   );
