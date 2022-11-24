@@ -1,6 +1,14 @@
-import { fetchCustomers } from "hooks/useGetCustomers";
+import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
+import { useRouter } from "next/router";
 
 const Detail = ({ data }) => {
+  const router = useRouter();
+  const { mutate } = useDeleteCustomer();
+  const handleDelete = (e) => {
+    e.preventDefault();
+    mutate(data.id);
+    router.push("/customers");
+  };
   return (
     <ul>
       <li>{data.id}</li>
@@ -9,6 +17,7 @@ const Detail = ({ data }) => {
       <li>Tax Office : {data.taxOffice}</li>
       <li>Invoice Count : {data.invoiceCount}</li>
       <li>Contact Number : {data.contactNumber}</li>
+      <button onClick={(e) => handleDelete(e)}>Delete Customer</button>
     </ul>
   );
 };
