@@ -1,11 +1,14 @@
 import { useFetch } from "./useFetch";
 
 export interface ILoginObj {
-  loginUsername: string;
-  loginPassword: string;
+  loginUsername?: string;
+  loginPassword?: string;
 }
 
-export const useValidate = ({ loginUsername, loginPassword }: ILoginObj) => {
+export const useValidate = ({
+  loginUsername = "",
+  loginPassword = "",
+}: ILoginObj) => {
   const { data, isLoading, isError } = useFetch();
   let isValidated = false;
 
@@ -15,7 +18,7 @@ export const useValidate = ({ loginUsername, loginPassword }: ILoginObj) => {
         isValidated = true;
       } else return;
     });
-  }
+  } else return isValidated;
 
   return isValidated;
 };

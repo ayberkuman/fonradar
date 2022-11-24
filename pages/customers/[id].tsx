@@ -1,7 +1,10 @@
+import { EditCustomer } from "@components/EditCustomer/EditCustomer";
 import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const Detail = ({ data }) => {
+  const [isOnEdit, setIsOnEdit] = useState(false);
   const router = useRouter();
   const { mutate } = useDeleteCustomer();
   const handleDelete = (e) => {
@@ -9,7 +12,7 @@ const Detail = ({ data }) => {
     mutate(data.id);
     router.push("/customers");
   };
-  return (
+  return !isOnEdit ? (
     <ul>
       <li>{data.id}</li>
       <li>Company Name : {data.companyName}</li>
@@ -18,7 +21,17 @@ const Detail = ({ data }) => {
       <li>Invoice Count : {data.invoiceCount}</li>
       <li>Contact Number : {data.contactNumber}</li>
       <button onClick={(e) => handleDelete(e)}>Delete Customer</button>
+      <button onClick={(e) => setIsOnEdit(true)}>Edit Customer</button>
     </ul>
+  ) : (
+    <EditCustomer
+      defaultCompanyName={data.companyName}
+      defaultTaxNumber={data.taxNumber}
+      defaultTaxOffice={data.taxOffice}
+      defaultContactNumber={data.contactNumber}
+      id={data.id}
+      setIsOnEdit={setIsOnEdit}
+    />
   );
 };
 

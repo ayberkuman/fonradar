@@ -1,11 +1,7 @@
-import Head from "next/head";
 import { AppProps } from "next/app";
 import "../styles/index.css";
-import {
-  Hydrate,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
 const queryClient = new QueryClient();
 

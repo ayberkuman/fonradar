@@ -14,6 +14,12 @@ const postCustomer = async (customer) => {
     customer
   );
 };
+export const updateCustomer = async (customer, id) => {
+  return await axios.put(
+    ` https://6215eeb77428a1d2a354c664.mockapi.io/api/v1/customers/${id}`,
+    customer
+  );
+};
 const deleteCustomer = async (id) => {
   return await axios.delete(
     `https://6215eeb77428a1d2a354c664.mockapi.io/api/v1/customers/${id}`
@@ -37,3 +43,12 @@ export const useDeleteCustomer = () => {
     },
   });
 };
+
+/* export const useUpdateCustomer = (id, customer) => {
+  const queryClient = useQueryClient();
+  return useMutation(updateCustomer, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["customers"]);
+    },
+  });
+}; */

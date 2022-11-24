@@ -12,15 +12,13 @@ export default function Home() {
   const isValidated = useValidate(userLogin);
   useEffect(() => {
     if (isValidated) {
-      router.push("/list");
+      router.push("/customers");
     }
   }, [isValidated]);
-  console.log(isValidated);
 
   return (
     <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
       <Login setUserLogin={setUserLogin} />
-      {isValidated ? <div>Validated</div> : <div>Not Validated</div>}
     </div>
   );
 }
