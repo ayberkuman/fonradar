@@ -24,33 +24,60 @@ export const BasicTable = ({ data }) => {
       useSortBy
     );
   return (
-    <div className="table-container">
+    <div className="">
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <div>{column.canFilter ? column.render("Filter") : null}</div>
-                  <span>
-                    {column.isSorted ? (column.isSortedDesc ? "🔽" : "🔼") : ""}
-                  </span>
+          {headerGroups.map((headerGroup, i) => (
+            <tr
+              key={i}
+              className="border-neutral-500 border-2"
+              {...headerGroup.getHeaderGroupProps()}
+            >
+              {headerGroup.headers.map((column, i) => (
+                <th
+                  key={i}
+                  className="px-4 py-2 border-neutral-500 border-2 text-neutral-700"
+                >
+                  <div
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                  >
+                    {column.render("Header")}
+
+                    <span className="flex flex-col">
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? "🔽"
+                          : "🔼"
+                        : "🔽🔼"}
+                    </span>
+                  </div>
+
+                  <div className=" p-4">
+                    {column.canFilter ? column.render("Filter") : null}
+                  </div>
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row, i) => {
             prepareRow(row);
 
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+              <tr key={i} {...row.getRowProps()}>
+                {row.cells.map((cell, i) => {
                   return (
-                    <Link href={`/customers/${cell.row.values.id}`}>
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <Link
+                      key={i}
+                      href="/" /* href={`/customers/${cell.row.values.id}`} */
+                    >
+                      <td
+                        className="text-center border-neutral-500 border-2"
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render("Cell")}
+                      </td>
                     </Link>
                   );
                 })}

@@ -2,8 +2,7 @@ import { AddCustomer } from "@components/AddCustomer/AddCustomer";
 import { BasicTable } from "@components/common/table/BasicTable";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCustomers } from "hooks/useGetCustomers";
-import { useValidate } from "hooks/useValidate";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Home = ({}) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -11,12 +10,17 @@ const Home = ({}) => {
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: " + error;
   return (
-    <div className="flex items-start">
+    <div className="flex justify-between items-start bg-neutral-100">
       <BasicTable data={data} />
-      <button onClick={() => setIsFormOpen(!isFormOpen)}>
-        {isFormOpen ? "Cancel" : "Add Customer"}
-      </button>
-      {isFormOpen && <AddCustomer />}
+      <div className={`mx-auto p-4 flex ${isFormOpen ? "flex-col" : ""}`}>
+        <button
+          className="max-w-[150px] bg-green-black-bg px-4 py-2"
+          onClick={() => setIsFormOpen(!isFormOpen)}
+        >
+          {isFormOpen ? "Cancel" : "Add Customer"}
+        </button>
+        {isFormOpen && <AddCustomer />}
+      </div>
     </div>
   );
 };

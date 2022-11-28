@@ -1,4 +1,4 @@
-import { EditCustomer } from "@components/EditCustomer/EditCustomer";
+/* import { EditCustomer } from "@components/EditCustomer/EditCustomer";
 import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -48,13 +48,17 @@ const Detail = ({ data }) => {
 };
 
 export async function getStaticPaths() {
-  const res = await fetchCustomers();
+  try {
+    const res = await fetchCustomers();
 
-  const paths = res.map((post) => ({
-    params: { id: post.id },
-  }));
+    const paths = res.map((post) => ({
+      params: { id: post.id },
+    }));
 
-  return { paths, fallback: false };
+    return { paths, fallback: false };
+  } catch {
+    return { paths: [{}], fallback: false };
+  }
 }
 
 export const getStaticProps = async ({ params }) => {
@@ -68,3 +72,4 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 export default Detail;
+ */

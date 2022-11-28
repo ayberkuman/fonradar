@@ -10,6 +10,7 @@ export default function Home() {
   });
   const router = useRouter();
   const isValidated = useValidate(userLogin);
+  console.log(isValidated);
   useEffect(() => {
     if (isValidated) {
       router.push("/customers");
@@ -17,7 +18,7 @@ export default function Home() {
   }, [isValidated]);
 
   return (
-    <div className="container flex items-center p-4 mx-auto min-h-screen justify-center">
+    <div className="container bg-neutral-100 flex items-center p-4 mx-auto min-h-screen justify-center">
       <Login setUserLogin={setUserLogin} />
     </div>
   );
