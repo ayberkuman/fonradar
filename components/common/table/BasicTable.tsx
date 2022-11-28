@@ -68,10 +68,7 @@ export const BasicTable = ({ data }) => {
               <tr key={i} {...row.getRowProps()}>
                 {row.cells.map((cell, i) => {
                   return (
-                    <Link
-                      key={i}
-                      href="/" /* href={`/customers/${cell.row.values.id}`} */
-                    >
+                    <Link key={i} href={`/customers/${cell.row.values.id}`}>
                       <td
                         className="text-center border-neutral-500 border-2"
                         {...cell.getCellProps()}
