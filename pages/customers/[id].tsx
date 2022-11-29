@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 const Detail = ({ data }) => {
   const [isOnEdit, setIsOnEdit] = useState(false);
-
   const router = useRouter();
 
   const { mutate } = useDeleteCustomer();

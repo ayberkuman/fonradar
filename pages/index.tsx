@@ -10,7 +10,6 @@ export default function Home() {
   });
   const router = useRouter();
   const isValidated = useValidate(userLogin);
-  console.log(isValidated);
   useEffect(() => {
     if (isValidated) {
       router.push("/customers");
