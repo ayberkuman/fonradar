@@ -65,7 +65,11 @@ export const BasicTable = ({ data }) => {
             prepareRow(row);
 
             return (
-              <tr key={i} {...row.getRowProps()}>
+              <tr
+                className="cursor-pointer hover:bg-neutral-500"
+                key={i}
+                {...row.getRowProps()}
+              >
                 {row.cells.map((cell, i) => {
                   return (
                     <Link key={i} href={`/customers/${cell.row.values.id}`}>

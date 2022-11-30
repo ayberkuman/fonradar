@@ -1,4 +1,4 @@
-import { updateCustomer } from "hooks/useGetCustomers";
+import { updateCustomer } from "hooks/UseCrud";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -22,9 +22,12 @@ export const EditCustomer = ({
     setIsOnEdit(false);
   };
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col h-min">
-      <label htmlFor="companyName">Company Name</label>
+    <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col h-min p-2">
+      <label className="p-2 text-title-20-auto-medium" htmlFor="companyName">
+        Company Name
+      </label>
       <input
+        className="p-2 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium focus:outline-none focus:border-neutral-800 max-w-md py-2"
         value={formData.companyName}
         onChange={(e) =>
           setFormData({ ...formData, companyName: e.target.value })
@@ -33,8 +36,11 @@ export const EditCustomer = ({
         name="companyName"
         id="companyName"
       />
-      <label htmlFor="taxNumber">Tax Number</label>
+      <label className="p-2 text-title-20-auto-medium" htmlFor="taxNumber">
+        Tax Number
+      </label>
       <input
+        className="p-2 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium focus:outline-none focus:border-neutral-800 max-w-md py-2"
         value={formData.taxNumber}
         onChange={(e) =>
           setFormData({ ...formData, taxNumber: e.target.value })
@@ -43,8 +49,11 @@ export const EditCustomer = ({
         name="taxNumber"
         id="taxNumber"
       />
-      <label htmlFor="taxOffice">Tax Office</label>
+      <label className="p-2 text-title-20-auto-medium" htmlFor="taxOffice">
+        Tax Office
+      </label>
       <input
+        className="p-2 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium focus:outline-none focus:border-neutral-800 max-w-md py-2"
         value={formData.taxOffice}
         onChange={(e) =>
           setFormData({ ...formData, taxOffice: e.target.value })
@@ -53,8 +62,11 @@ export const EditCustomer = ({
         name="taxOffice"
         id="taxOffice"
       />
-      <label htmlFor="contactNumber">Contact Number</label>
+      <label className="p-2 text-title-20-auto-medium" htmlFor="contactNumber">
+        Contact Number
+      </label>
       <input
+        className="p-2 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium focus:outline-none focus:border-neutral-800 max-w-md py-2"
         value={formData.contactNumber}
         onChange={(e) =>
           setFormData({ ...formData, contactNumber: e.target.value })
@@ -63,7 +75,12 @@ export const EditCustomer = ({
         name="contactNumber"
         id="contactNumber"
       />
-      <button type="submit">Save</button>
+      <button
+        className="m-2 my-4 py-2 px-4 self-start bg-green-black-bg rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
+        type="submit"
+      >
+        Save
+      </button>
     </form>
   );
 };

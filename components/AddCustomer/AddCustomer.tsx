@@ -1,4 +1,4 @@
-import { usePostCustomer } from "hooks/useGetCustomers";
+import { usePostCustomer } from "hooks/UseCrud";
 import { useState } from "react";
 
 export const AddCustomer = () => {
@@ -56,7 +56,12 @@ export const AddCustomer = () => {
         name="contactNumber"
         id="contactNumber"
       />
-      <button type="submit">Add Customer</button>
+      <button
+        className="bg-green-black-bg px-4 py-2 rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
+        type="submit"
+      >
+        Add Customer
+      </button>
     </form>
   );
 };

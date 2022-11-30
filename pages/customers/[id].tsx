@@ -1,6 +1,5 @@
 import { EditCustomer } from "@components/EditCustomer/EditCustomer";
-import axios from "axios";
-import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
+import { fetchCustomers, useDeleteCustomer } from "hooks/UseCrud";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -16,24 +15,49 @@ const Detail = ({ data }) => {
     router.push("/customers");
   };
 
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-
   useEffect(() => {
-    refreshData();
+    router.replace(router.asPath);
   }, [isOnEdit]);
 
   return !isOnEdit ? (
-    <ul>
-      <li>{data.id}</li>
-      <li>Company Name : {data.companyName}</li>
-      <li>Tax Number: {data.taxNumber}</li>
-      <li>Tax Office : {data.taxOffice}</li>
-      <li>Invoice Count : {data.invoiceCount}</li>
-      <li>Contact Number : {data.contactNumber}</li>
-      <button onClick={(e) => handleDelete(e)}>Delete Customer</button>
-      <button onClick={(e) => setIsOnEdit(true)}>Edit Customer</button>
+    <ul className="p-2">
+      <li className="p-2">{data.id}</li>
+      <li className="p-2 flex flex-col text-title-20-auto-medium ">
+        Company Name :{" "}
+        <span className="text-title-18-22-medium py-2">{data.companyName}</span>
+      </li>
+      <li className="p-2 flex flex-col text-title-20-auto-medium">
+        Tax Number:{" "}
+        <span className="text-title-18-22-medium py-2">{data.taxNumber}</span>
+      </li>
+      <li className="p-2 flex flex-col text-title-20-auto-medium">
+        Tax Office :{" "}
+        <span className="text-title-18-22-medium py-2">{data.taxOffice}</span>
+      </li>
+      <li className="p-2 flex flex-col text-title-20-auto-medium">
+        Invoice Count :{" "}
+        <span className="text-title-18-22-medium py-2">
+          {data.invoiceCount}
+        </span>
+      </li>
+      <li className="p-2 flex flex-col text-title-20-auto-medium">
+        Contact Number :{" "}
+        <span className="text-title-18-22-medium py-2">
+          {data.contactNumber}
+        </span>
+      </li>
+      <button
+        className="mx-2 bg-accent-red px-4 py-2 rounded-md hover:bg-accent-red/50 text-white text-title-20-auto-medium transition-all"
+        onClick={(e) => handleDelete(e)}
+      >
+        Delete Customer
+      </button>
+      <button
+        className="mx-2 bg-green-black-bg px-4 py-2 rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
+        onClick={(e) => setIsOnEdit(true)}
+      >
+        Edit Customer
+      </button>
     </ul>
   ) : (
     <EditCustomer
@@ -49,12 +73,9 @@ const Detail = ({ data }) => {
 
 export async function getStaticPaths() {
   try {
-    const res = await axios.get(
-      "https://6215eeb77428a1d2a354c664.mockapi.io/api/v1/customers"
-    );
-    const customers = await res.data;
+    const res = await fetchCustomers();
 
-    const paths = customers.map((post) => ({
+    const paths = res.map((post) => ({
       params: { id: post.id },
     }));
 
