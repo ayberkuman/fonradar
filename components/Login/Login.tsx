@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Login = ({ setUserLogin }) => {
+export const Login = ({ setUserLogin, isValidated }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +18,7 @@ export const Login = ({ setUserLogin }) => {
       <h1 className="text-title-24-auto-medium text-neutral-900 py-4">LOGIN</h1>
       <input
         placeholder="Username"
-        className="p-2 px-6 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium text-green focus:outline-none focus:border-neutral-800"
+        className="p-2 px-6 bg-transparent invalid:border-accent-red border-neutral-500 border-b-2 text-title-16-auto-medium text-green focus:outline-none focus:border-neutral-800"
         autoFocus={true}
         required
         type="text"
@@ -29,7 +29,7 @@ export const Login = ({ setUserLogin }) => {
 
       <input
         placeholder="Password"
-        className="p-2 px-6 bg-transparent border-neutral-500 border-b-2 text-title-16-auto-medium text-green focus:outline-none focus:border-neutral-800"
+        className="p-2 px-6 bg-transparent invalid:border-accent-red border-neutral-500 border-b-2 text-title-16-auto-medium text-green focus:outline-none focus:border-neutral-800"
         required
         type="password"
         id="loginPassword"
