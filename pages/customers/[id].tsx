@@ -1,4 +1,5 @@
 import { EditCustomer } from "@components/EditCustomer/EditCustomer";
+import axios from "axios";
 import { fetchCustomers, useDeleteCustomer } from "hooks/useGetCustomers";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -48,9 +49,12 @@ const Detail = ({ data }) => {
 
 export async function getStaticPaths() {
   try {
-    const res = await fetchCustomers();
+    const res = await axios.get(
+      "https://6215eeb77428a1d2a354c664.mockapi.io/api/v1/customers"
+    );
+    const customers = await res.data;
 
-    const paths = res.map((post) => ({
+    const paths = customers.map((post) => ({
       params: { id: post.id },
     }));
 
