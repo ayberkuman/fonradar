@@ -1,3 +1,4 @@
+import { Button } from "@components/common/button/Button";
 import { updateCustomer } from "hooks/useCrud";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -76,12 +77,9 @@ export const EditCustomer = ({
         id="contactNumber"
       />
       <div>
-        <button
-          className="mx-2  bg-accent-red px-4 py-2 rounded-md hover:bg-accent-red/50 text-white text-title-20-auto-medium transition-all"
-          onClick={(e) => setIsOnEdit(false)}
-        >
+        <Button isPositive={false} handleClick={(e) => setIsOnEdit(false)}>
           Cancel
-        </button>
+        </Button>
         <button
           className="m-2 my-4 py-2 px-4 self-start bg-green-black-bg rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
           type="submit"

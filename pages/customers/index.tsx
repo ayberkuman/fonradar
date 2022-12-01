@@ -1,4 +1,5 @@
 import { AddCustomer } from "@components/AddCustomer/AddCustomer";
+import { Button } from "@components/common/button/Button";
 import { BasicTable } from "@components/common/table/BasicTable";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCustomers } from "hooks/useCrud";
@@ -15,14 +16,12 @@ const Home = ({}) => {
     <div className="flex justify-between items-start p-2 bg-neutral-100">
       <BasicTable data={data} />
       <div className={`mx-auto p-4 flex ${isFormOpen ? "flex-col" : ""}`}>
-        <button
-          className={`bg-green-black-bg px-4 py-2 rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all ${
-            isFormOpen ? "bg-accent-red hover:bg-accent-red/50" : ""
-          }`}
-          onClick={() => setIsFormOpen(!isFormOpen)}
+        <Button
+          isPositive={isFormOpen ? false : true}
+          handleClick={() => setIsFormOpen(!isFormOpen)}
         >
           {isFormOpen ? "Cancel" : "Add Customer"}
-        </button>
+        </Button>
         {isFormOpen && <AddCustomer />}
       </div>
     </div>

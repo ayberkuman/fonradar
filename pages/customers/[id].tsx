@@ -1,3 +1,4 @@
+import { Button } from "@components/common/button/Button";
 import { EditCustomer } from "@components/EditCustomer/EditCustomer";
 import { fetchCustomers, useDeleteCustomer } from "hooks/useCrud";
 import { useRouter } from "next/router";
@@ -21,12 +22,9 @@ const Detail = ({ data }) => {
 
   return !isOnEdit ? (
     <ul className="p-2">
-      <button
-        onClick={() => router.back()}
-        className="p-2 border-2 rounded-md hover:scale-110"
-      >
+      <Button isPositive={false} handleClick={() => router.back()}>
         Go Back
-      </button>
+      </Button>
       <li className="p-2">{data.id}</li>
       <li className="p-2 flex flex-col text-title-20-auto-medium ">
         Company Name :{" "}
@@ -52,18 +50,12 @@ const Detail = ({ data }) => {
           {data.contactNumber}
         </span>
       </li>
-      <button
-        className="mx-2 bg-accent-red px-4 py-2 rounded-md hover:bg-accent-red/50 text-white text-title-20-auto-medium transition-all"
-        onClick={(e) => handleDelete(e)}
-      >
+      <Button isPositive={false} handleClick={(e) => handleDelete(e)}>
         Delete Customer
-      </button>
-      <button
-        className="mx-2 bg-green-black-bg px-4 py-2 rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
-        onClick={(e) => setIsOnEdit(true)}
-      >
+      </Button>
+      <Button isPositive handleClick={(e) => setIsOnEdit(true)}>
         Edit Customer
-      </button>
+      </Button>
     </ul>
   ) : (
     <EditCustomer
