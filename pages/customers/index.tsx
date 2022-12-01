@@ -1,7 +1,7 @@
 import { AddCustomer } from "@components/AddCustomer/AddCustomer";
 import { BasicTable } from "@components/common/table/BasicTable";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCustomers } from "hooks/UseCrud";
+import { fetchCustomers } from "hooks/useCrud";
 import { useValidate } from "hooks/useValidate";
 import { useState } from "react";
 

@@ -1,5 +1,5 @@
 import { EditCustomer } from "@components/EditCustomer/EditCustomer";
-import { fetchCustomers, useDeleteCustomer } from "hooks/UseCrud";
+import { fetchCustomers, useDeleteCustomer } from "hooks/useCrud";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -21,6 +21,12 @@ const Detail = ({ data }) => {
 
   return !isOnEdit ? (
     <ul className="p-2">
+      <button
+        onClick={() => router.back()}
+        className="p-2 border-2 rounded-md hover:scale-110"
+      >
+        Go Back
+      </button>
       <li className="p-2">{data.id}</li>
       <li className="p-2 flex flex-col text-title-20-auto-medium ">
         Company Name :{" "}

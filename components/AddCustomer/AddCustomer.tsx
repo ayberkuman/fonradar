@@ -1,4 +1,4 @@
-import { usePostCustomer } from "hooks/UseCrud";
+import { usePostCustomer } from "hooks/useCrud";
 import { useState } from "react";
 
 export const AddCustomer = () => {
