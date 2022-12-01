@@ -1,3 +1,4 @@
+import { Button } from "@components/common/button/Button";
 import { useState } from "react";
 
 export const Login = ({ setUserLogin, isValidated }) => {
@@ -37,12 +38,7 @@ export const Login = ({ setUserLogin, isValidated }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button
-        className="w-full bg-green-black-bg px-4 py-2 rounded-md hover:bg-green text-white text-title-20-auto-medium transition-all"
-        type="submit"
-      >
-        Login
-      </button>
+      <Button isPositive>Login</Button>
     </form>
   );
 };

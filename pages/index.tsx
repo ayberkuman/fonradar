@@ -16,7 +16,6 @@ export default function Home() {
       router.push("/customers");
     }
   }, [isValidated]);
-  console.log(isValidated);
 
   return (
     <div className="container bg-neutral-100 flex items-center p-4 mx-auto min-h-screen justify-center">

@@ -1,4 +1,12 @@
-export const Button = ({ handleClick, isPositive, children }) => {
+import { ReactNode } from "react";
+
+type IButton = {
+  children: ReactNode;
+  handleClick?: (e) => void;
+  isPositive?: boolean;
+};
+
+export const Button = ({ handleClick, isPositive, children }: IButton) => {
   return (
     <button
       onClick={handleClick}

@@ -12,7 +12,6 @@ export const useValidate = ({
 }: ILoginObj) => {
   const [isValidated, setIsValidated] = useState(false);
   const { data } = useFetch();
-
   const validate = () => {
     if (data) {
       data.forEach((user) => {
